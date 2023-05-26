@@ -7,6 +7,7 @@ export const storage = firebase.storage();
 
 export default class AddFisicoculturismo extends Component {
     constructor(props) {
+        const {usuario} = props;
         super(props);
         this.onChangeTitle = this.onChangeTitle.bind(this);
         this.onChangeDescription = this.onChangeDescription.bind(this);
@@ -15,6 +16,7 @@ export default class AddFisicoculturismo extends Component {
         //this.onChangeURL=this.onChangeURL.bind(this);
 
         this.state ={
+            user: usuario,
             title: "",
             description: "",
             published: false,
@@ -76,6 +78,7 @@ export default class AddFisicoculturismo extends Component {
 
     saveFisicoculturismo(){
         let data={
+            user: this.state.user,
             title:this.state.title,
             description: this.state.description,
             published: false,
