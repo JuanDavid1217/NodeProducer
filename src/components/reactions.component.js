@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 //import FisicoculturismoDataService from "../services/fisicoculturismo.service";
 import KafkaService from "../services/kafka.service";
 
-function savereaction(e, status, selection) {
+function savereaction(e, status, selection, publication, user) {
     let data = {
       id: 0,
       status: status
@@ -11,14 +11,18 @@ function savereaction(e, status, selection) {
     console.log(JSON.stringify(data));
  
     KafkaService.reaction(selection);
+    console.log(publication);
+    console.log(user);
     e.preventDefault();
 }
 
 export default class ReactionsLike extends Component {
     constructor(props) {
+        const {publication_id, usuario}=props;
         super(props);
-        this.state = {value: 'default'};
-    
+        this.state = {value: 'default',
+                      id_publication: publication_id,
+                      user: usuario};
         this.handleChange = this.handleChange.bind(this);
     }
     
@@ -35,7 +39,7 @@ export default class ReactionsLike extends Component {
             <select id="selection" className="styleofButtom" value={this.state.value} onChange={this.handleChange}
             onClick={(e) => {
                     
-                        savereaction(e, 1, this.state.value)
+                        savereaction(e, 1, this.state.value, this.state.id_publication, this.state.user)
                     
                 }
             }>
@@ -51,7 +55,7 @@ export default class ReactionsLike extends Component {
 
             <button onClick={(e) => {
                     e.preventDefault();
-                    savereaction(e, 1, this.state.value)
+                    savereaction(e, 1, this.state.value, this.state.id_publication, this.state.user)
                       
                     }
                 } >

@@ -38,6 +38,7 @@ export default class FisicoculturismoList extends Component {
       let data = item.data();
       fisicoculturismo.push({
         id: id,
+        user: data.user,
         title: data.title,
         description: data.description,
         //Yo la puse
@@ -92,15 +93,17 @@ export default class FisicoculturismoList extends Component {
                 >
                   <div onClick={() => this.setActiveTutorial(fisico, index)}
                   >
-                  <div className="styleTitlePublication">{fisico.title}</div>
+                  <div>Publicado por: {fisico.user}</div>
+                  <hr></hr>
+                  <p className="styleTitlePublication">{fisico.title}</p>
                   <p>{fisico.description}</p>
                   <div>
                     {fisico.url? <img className="styleImagePublication" alt="Preview" height="300px" src={fisico.url} /> : null }
                   </div>
                   <div>
                     <hr />
-                    <Reaction/>
-                    <Com/>
+                    <Reaction publication_id={fisico.id} usuario={fisico.user}/>
+                    <Com publication_id={fisico.id}/>
                   </div>
                   </div>
 
