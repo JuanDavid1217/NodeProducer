@@ -7,7 +7,7 @@ import Com from "./comentarios.component";
 
 export default class FisicoculturismoList extends Component {
   constructor(props) {
-
+    const {usuario}=props;
     super(props);
     this.refreshList = this.refreshList.bind(this);
     this.setActiveTutorial = this.setActiveTutorial.bind(this);
@@ -15,6 +15,7 @@ export default class FisicoculturismoList extends Component {
 //  this.state = this.state.bind(this);
 
     this.state = {
+      user: usuario,
       fisicoculturismo: [],
       currentFisicoculturismo: null,
       currentIndex: -1,
@@ -77,7 +78,7 @@ export default class FisicoculturismoList extends Component {
   }
 
   render() {
-    const { fisicoculturismo, currentFisicoculturismo} = this.state;
+    const { fisicoculturismo, currentFisicoculturismo, user}= this.state;
 
     return (
       <div className="row">
@@ -102,8 +103,8 @@ export default class FisicoculturismoList extends Component {
                   </div>
                   <div>
                     <hr />
-                    <Reaction publication_id={fisico.id} usuario={fisico.user}/>
-                    <Com publication_id={fisico.id}/>
+                    <Reaction publication_id={fisico.id} usuario={user}/>
+                    <Com publication_id={fisico.id} usuario={user}/>
                   </div>
                   </div>
 
