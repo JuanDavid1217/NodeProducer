@@ -41,7 +41,7 @@ export function Home() {
       <br></br>
       <Routes>
             <Route path="add" element={<FisicoADD usuario={user.displayName} />}/>
-            <Route path="/" element={<FisicoList />} />  
+            <Route path="/" element={<FisicoList usuario={user.displayName}/>} />  
       </Routes>
     </div>
   </section>

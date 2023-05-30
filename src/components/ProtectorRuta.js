@@ -5,7 +5,8 @@ export function ProtectorRuta({children}) {
   const {user} = UserAuth();
  if(user==null){
   return <Navigate to={"/"}/>
+ }else{
+  return children;
  }
- return children;
 }
 
